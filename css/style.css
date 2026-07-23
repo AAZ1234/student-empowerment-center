@@ -1,0 +1,546 @@
+/* =========================================================
+   مركز الريادة الطلابي - style.css
+   الملف الأساسي المشترك بين جميع الصفحات
+   يحتوي على: المتغيرات - إعادة التهيئة - الطباعة
+   - الحاوية - الأزرار - شريط التنقل - عنوان الصفحة
+   - قسم الدعوة لإجراء (CTA) - التذييل
+   ========================================================= */
+
+/* ---------- 1) متغيرات الألوان والخطوط (مبنية على شعار المركز الحقيقي) ---------- */
+:root{
+  --red:        #D5393D;
+  --red-dark:   #B32C30;
+  --navy:       #34526C;
+  --navy-dark:  #223849;
+  --teal:       #33BDC7;
+  --teal-dark:  #279AA3;
+  --teal-light: #7FE0E7;
+
+  --paper:      #F8FAFB;
+  --white:      #FFFFFF;
+  --ink:        #1F2D37;
+  --muted:      #5C6B76;
+  --line:       #E3E8EC;
+
+  --font-ar: 'Cairo', sans-serif;
+  --font-en: 'Poppins', sans-serif;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 10px 26px -12px rgba(34, 56, 73, 0.18);
+  --shadow-hover: 0 16px 34px -14px rgba(34, 56, 73, 0.26);
+  --transition: .25s ease;
+}
+
+/* ---------- 2) إعادة التهيئة ---------- */
+*, *::before, *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: var(--font-ar);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img{
+  max-width: 100%;
+  display: block;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  list-style: none;
+}
+
+button{
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea{
+  font-family: inherit;
+}
+
+h1, h2, h3{
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.35;
+}
+
+h1{ font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
+h2{ font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 20px; }
+h3{ font-size: 1.15rem; }
+
+p{ color: var(--muted); }
+
+/* ---------- 3) الحاوية العامة ---------- */
+.container{
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+section{
+  padding-block: 70px;
+}
+
+/* ---------- 4) الأزرار ---------- */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--teal);
+  color: var(--white);
+  font-weight: 700;
+  font-size: .95rem;
+  padding: 13px 28px;
+  border-radius: 999px;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  box-shadow: 0 10px 22px -10px rgba(51, 189, 199, .55);
+}
+
+.btn:hover{
+  background: var(--teal-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn i{
+  font-size: .85em;
+}
+
+.secondary-btn{
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255,255,255,.55);
+  box-shadow: none;
+}
+
+.secondary-btn:hover{
+  background: rgba(255,255,255,.14);
+  border-color: #fff;
+}
+
+/* ---------- 5) شريط التنقل ---------- */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(248, 250, 251, .92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow var(--transition);
+}
+
+.navbar.scrolled{
+  box-shadow: var(--shadow);
+}
+
+.nav-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 12px;
+}
+
+.logo img{
+  height: 52px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a{
+  display: inline-block;
+  font-weight: 600;
+  font-size: .96rem;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: var(--navy);
+  transition: background var(--transition), color var(--transition);
+}
+
+.nav-links a:hover{
+  background: rgba(51, 189, 199, .12);
+  color: var(--teal-dark);
+}
+
+.nav-links li a[href$="index.html"],
+.nav-links li a[href$="about.html"],
+.nav-links li a[href$="programs.html"],
+.nav-links li a[href$="news.html"],
+.nav-links li a[href$="contact.html"]{
+  white-space: nowrap;
+}
+
+/* تمييز الرابط النشط: يضاف عبر main.js بإضافة class="current" */
+.nav-links a.current{
+  background: var(--navy);
+  color: var(--white);
+}
+
+.nav-toggle{
+  display: none;
+  font-size: 1.3rem;
+  color: var(--navy);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.nav-toggle:hover{
+  background: rgba(52, 82, 108, .08);
+}
+
+/* ---------- 6) عنوان الصفحة الداخلية (Page Hero) ---------- */
+.page-hero{
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: var(--white);
+  text-align: center;
+  padding-block: 64px 58px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(51,189,199,.18), transparent 45%),
+    radial-gradient(circle at 88% 75%, rgba(213,57,61,.14), transparent 45%);
+  pointer-events: none;
+}
+
+.page-hero h1{
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+
+.page-hero p{
+  color: rgba(255,255,255,.82);
+  font-size: 1.05rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 7) قسم الدعوة لإجراء (CTA) - مشترك بين عدة صفحات ---------- */
+.cta{
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  text-align: center;
+  padding-block: 60px;
+}
+
+.cta h2{
+  color: var(--white);
+}
+
+.cta .btn{
+  background: var(--white);
+  color: var(--teal-dark);
+  box-shadow: 0 10px 22px -8px rgba(0,0,0,.2);
+}
+
+.cta .btn:hover{
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ---------- 8) التذييل (Footer) ---------- */
+.footer{
+  background: var(--navy-dark);
+  color: rgba(255,255,255,.78);
+  padding-block: 46px 22px;
+}
+
+.footer-content{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 34px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+}
+
+.footer-content h3{
+  color: var(--white);
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.footer-content p{
+  color: rgba(255,255,255,.72);
+  font-size: .92rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.footer-content p i{
+  color: var(--teal-light);
+  width: 16px;
+}
+
+.footer-social .social-icons{
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.footer-social .social-icons a{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.footer-social .social-icons a:hover{
+  background: var(--teal);
+  border-color: var(--teal);
+  transform: translateY(-3px);
+}
+
+.footer-bottom{
+  text-align: center;
+  padding-top: 20px;
+  font-size: .85rem;
+  color: rgba(255,255,255,.55);
+}
+
+/* ---------- 9) حركات وتأثيرات مشتركة (Animations) ---------- */
+
+/* دخول العنصر تدريجياً - تُستخدم من main.js/home.js/about.js/news.js */
+@keyframes fadeInUp{
+  from{ opacity: 0; transform: translateY(22px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+/* تعويم خفيف مستمر للأيقونات الزخرفية في رأس الصفحة */
+@keyframes floatY{
+  0%, 100%{ transform: translateY(0) rotate(0deg); }
+  50%{ transform: translateY(-14px) rotate(6deg); }
+}
+
+/* ملاحظة: اهتزاز الحقول غير الصالحة في نموذج التواصل أصبح الآن
+   عبر مكتبة Animate.css (class="animate__animated animate__shakeX") */
+
+/* نبض بسيط مستمر لتعليم اهتمام العين (مستخدم على أيقونات بطاقات البرامج) */
+@keyframes softPulse{
+  0%, 100%{ box-shadow: 0 0 0 0 rgba(51, 189, 199, .45); }
+  50%{ box-shadow: 0 0 0 8px rgba(51, 189, 199, 0); }
+}
+
+/* شعار المركز: الدخول اللطيف عند التحميل الآن عبر مكتبة Animate.css
+   (class="animate__animated animate__fadeInDown" في كل صفحة) */
+.logo img{
+  animation-duration: .8s;
+}
+
+/* حركة سهم الأزرار عند المرور بالمؤشر */
+.btn i{
+  transition: transform var(--transition);
+}
+
+.btn:hover i.fa-arrow-left{
+  transform: translateX(-5px);
+}
+
+.btn:hover i.fa-paper-plane{
+  transform: translate(-3px, -3px) rotate(8deg);
+}
+
+/* اهتزاز خفيف لأيقونات التواصل الاجتماعي عند المرور بالمؤشر */
+.footer-social .social-icons a i{
+  transition: transform var(--transition);
+}
+
+.footer-social .social-icons a:hover i{
+  transform: scale(1.15) rotate(-8deg);
+}
+
+/* أيقونات زخرفية عائمة داخل رأس الصفحات الداخلية */
+.page-hero .floating-icon{
+  position: absolute;
+  color: rgba(255,255,255,.16);
+  font-size: 2.6rem;
+  pointer-events: none;
+  animation: floatY 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.page-hero .fi-1{ top: 18%; inset-inline-start: 8%; font-size: 2.1rem; animation-delay: 0s; }
+.page-hero .fi-2{ bottom: 14%; inset-inline-end: 10%; font-size: 3rem; animation-delay: 1.4s; color: rgba(51,189,199,.22); }
+
+/* ---------- 10) صندوق عرض الصور بالحجم الكامل (Lightbox) ---------- */
+/* تقنية بدون جافاسكريبت: رابط يشير إلى id عبر :target */
+
+a.img-link{
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+a.img-link::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 25, 32, 0);
+  transition: background var(--transition);
+  z-index: 1;
+}
+
+a.img-link:hover::before{
+  background: rgba(15, 25, 32, .22);
+}
+
+a.img-link img{
+  transition: transform .45s ease;
+}
+
+a.img-link:hover img{
+  transform: scale(1.06);
+}
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(8, 15, 20, .92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.lightbox:target{
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img{
+  max-width: min(90vw, 900px);
+  max-height: 85vh;
+  width: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 30px 70px -20px rgba(0,0,0,.6);
+  animation: lightboxZoom .3s ease;
+}
+
+.lightbox-close{
+  position: absolute;
+  top: 22px;
+  inset-inline-end: 26px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  line-height: 1;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.lightbox-close:hover{
+  background: var(--red);
+  transform: rotate(90deg);
+}
+
+@keyframes lightboxZoom{
+  from{ transform: scale(.85); opacity: 0; }
+  to{ transform: scale(1); opacity: 1; }
+}
+
+/* ---------- 11) استجابة الشاشات الصغيرة (مشترك) ---------- */
+@media (max-width: 860px){
+  .nav-links{
+    position: fixed;
+    inset-inline: 0;
+    top: 76px;
+    background: var(--paper);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 24px 24px;
+    gap: 2px;
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    transform: translateY(-140%);
+    opacity: 0;
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  .nav-links.nav-active{
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .nav-links a{
+    display: block;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .nav-toggle{
+    display: inline-block;
+  }
+
+  .footer-content{
+    flex-direction: column;
+  }
+
+  .page-hero .floating-icon{
+    display: none;
+  }
+
+  .lightbox{
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

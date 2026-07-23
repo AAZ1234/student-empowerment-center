@@ -1,0 +1,140 @@
+/* =========================================================
+   programs.css - تنسيقات صفحة البرامج والدورات (programs.html)
+   ========================================================= */
+
+/* ---------- تصنيفات البرامج ---------- */
+.categories{
+  background: var(--white);
+  padding-block: 40px 10px;
+}
+
+.categories h2{
+  text-align: center;
+}
+
+.category-buttons{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.category-buttons button{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: .92rem;
+  padding: 11px 20px;
+  border-radius: 999px;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.category-buttons button:hover{
+  border-color: var(--teal);
+  color: var(--teal-dark);
+}
+
+.category-buttons button.active{
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+/* ---------- بطاقات البرامج ---------- */
+.programs{
+  background: var(--white);
+}
+
+.program-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.program-card{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* حالة الإخفاء أثناء الفلترة (يتحكم بها js/programs.js) */
+.program-card.hidden{
+  display: none;
+}
+
+.program-card img{
+  height: 175px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-content{
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-content h3{
+  margin-bottom: 10px;
+  color: var(--navy);
+}
+
+.card-content p{
+  font-size: .93rem;
+  flex: 1;
+  margin-bottom: 14px;
+}
+
+.card-content span{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .85rem;
+  color: var(--teal-dark);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.card-content .btn{
+  align-self: flex-start;
+}
+
+/* ---------- استجابة الشاشات ---------- */
+@media (max-width: 900px){
+  .program-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px){
+  .program-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .category-buttons{
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+  }
+
+  .category-buttons button{
+    flex-shrink: 0;
+  }
+}

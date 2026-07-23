@@ -1,0 +1,218 @@
+/* =========================================================
+   news.css - تنسيقات صفحة الأخبار والفعاليات (news.html)
+   ========================================================= */
+
+/* ---------- آخر الأخبار ---------- */
+.news-section{
+  background: var(--white);
+}
+
+.news-section h2{
+  text-align: center;
+}
+
+.news-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.news-card{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.news-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.news-card img{
+  height: 175px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.news-content{
+  padding: 20px 22px 24px;
+}
+
+.news-badge{
+  display: inline-flex;
+  align-items: center;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--red);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.news-content h3{
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.news-criteria{
+  margin-bottom: 14px;
+}
+
+.news-criteria li{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: .86rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.news-criteria li i{
+  color: var(--teal);
+  font-size: .8rem;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.news-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--white);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.news-meta span{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+}
+
+.news-content .news-note{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: .82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.news-note i{
+  color: #25D366;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.news-content p{
+  font-size: .93rem;
+  margin-bottom: 16px;
+}
+
+.news-content a{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--red);
+  font-size: .9rem;
+  transition: gap var(--transition), color var(--transition);
+}
+
+.news-content a:hover{
+  gap: 12px;
+  color: var(--red-dark);
+}
+
+/* ---------- الفعاليات ---------- */
+.events-section{
+  background: var(--paper);
+}
+
+.events-section h2{
+  text-align: center;
+}
+
+.events-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.event-card{
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.event-card img{
+  height: 160px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.event-card > div{
+  padding: 20px 22px 24px;
+}
+
+.event-card h3{
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.event-card p{
+  font-size: .9rem;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-date{
+  color: var(--red);
+  font-weight: 700;
+}
+
+.event-trainer{
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+
+/* ملاحظة: حركات "الظهور عند التمرير" أصبحت الآن من مكتبة AOS
+   عبر خاصية data-aos الموجودة مباشرة في news.html */
+
+/* ---------- استجابة الشاشات ---------- */
+@media (max-width: 900px){
+  .news-grid,
+  .events-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px){
+  .news-grid,
+  .events-grid{
+    grid-template-columns: 1fr;
+  }
+}
